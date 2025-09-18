@@ -52,6 +52,6 @@ jobs: # Задачи, которые выполнятся
           # sudo systemctl reload nginx
 
           № 7. Ответ от сервера
-          echo "Deployment completed successfully"
+          echo "Deployment full completed successfully"
 
           EOF
