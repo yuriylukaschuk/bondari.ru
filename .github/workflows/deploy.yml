@@ -36,7 +36,7 @@ jobs: # Задачи, которые выполнятся
           composer install --no-dev --optimize-autoloader
 
           # 4. (Опционально) Для Laravel: обновляем кэш конфига, видов и т.д.
-          # php artisan optimize:clear
+          php artisan optimize:clear
           # php artisan migrate --force
 
           # 5. (Опционально) Для Node.js: устанавливаем зависимости и билдим
