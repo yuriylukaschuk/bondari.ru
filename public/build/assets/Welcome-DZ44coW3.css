@@ -1,0 +1,1 @@
+.slide-fade-top-enter-from{transform:translateY(-100%);opacity:0}.slide-fade-top-enter-active{transition:all 3s ease}.slide-fade-top-leave-to{transform:translateY(-100%);opacity:0}.slide-fade-top-leave-active{transition:all 3s ease}.form-container{position:absolute;top:0;background-color:#a8720d;box-shadow:0 2px 10px #0000001a;z-index:10;padding:20px}

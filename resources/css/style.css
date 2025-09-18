@@ -1,0 +1,98 @@
+@charset "utf-8";
+* {
+	margin:0;
+	padding:0;
+	box-sizing: border-box;
+}
+body{
+	font-size: 100%;
+	font-family:'Open Sans', sans-serif
+}
+a {
+	-webkit-transition: .3s all ease;
+	-o-transition: .3s all ease;
+	transition: .3s all ease;
+}
+a:hover {
+	text-decoration: none;
+}
+h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
+	font-family: "Oswald", sans-serif;
+	text-transform: uppercase;
+}
+.btn{
+	max-width: 300px;
+	margin: auto;
+}
+
+.top-bar, footer {
+	background: #553400;
+	background: -moz-linear-gradient(left, #553400 0%, #74521A 51%, #FFAE47 100%);
+	background: -webkit-gradient(left top, right top, color-stop(0%, #553400), color-stop(51%, #74521A), color-stop(100%, #FFAE47));
+	background: -webkit-linear-gradient(left, #553400 0%, #74521A 51%, #FFAE47 100%);
+	background: -o-linear-gradient(left, #553400 0%, #74521A 51%, #FFAE47 100%);
+	background: -ms-linear-gradient(left, #553400 0%, #74521A 51%, #FFAE47 100%);
+	background: -webkit-gradient(linear, left top, right top, from(#553400), color-stop(51%, #74521A), to(#FFAE47));
+	background: linear-gradient(to right, #553400 0%, #74521A 51%, #FFAE47 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#553400', endColorstr='#FFAE47', GradientType=1 );
+	border-bottom: 1px solid #e9ecef !important;
+	padding: .5rem 0;
+}
+
+.container{
+	max-width:1040px;
+	margin:auto;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 0.5s;
+}
+.fade-enter-from,
+.fade-leave-to {
+	opacity: 0;
+}
+
+.img-bg-section {
+	background-image: url('/images/background.png')
+}
+
+/* Глобальные стили для адаптивного меню */
+.navbar-collapse {
+	transition: all 0.3s ease;
+}
+
+/* Иконка бургер-меню */
+.navbar-toggler:focus {
+	box-shadow: none;
+	outline: none;
+}
+
+/* Плавная анимация для мобильного меню */
+.collapse:not(.show) {
+	display: none;
+}
+
+.collapse.show {
+	display: block;
+}
+
+/* Улучшенная доступность */
+.nav-link:focus {
+	outline: 2px solid #ff8b00;
+	outline-offset: 2px;
+}
+
+/* Оптимизация для touch-устройств */
+@media (hover: none) and (pointer: coarse) {
+	.desktop-item:hover > .desktop-dropdown {
+		visibility: hidden;
+		opacity: 0;
+	}
+	
+	.desktop-item:active > .desktop-dropdown,
+	.desktop-item:focus > .desktop-dropdown {
+		visibility: visible;
+		opacity: 1;
+	}
+}
