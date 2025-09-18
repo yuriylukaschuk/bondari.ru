@@ -33,25 +33,29 @@ jobs: # Задачи, которые выполнятся
           # 1. Переходим в папку проекта
           cd /var/www/bondari.ru
 
-          # 2. Получаем последние изменения из GitHub
+          # 2. Очищаем место если нужно
+          sudo apt-get clean
+          composer clear-cache
+
+          # 3. Получаем последние изменения из GitHub
           git fetch --all
           git reset --hard origin/main
 
-          # 3. (Опционально) Устанавливаем зависимости, если используете Composer
-          composer install --no-dev --optimize-autoloader
+          # 4. (Опционально) Устанавливаем зависимости, если используете Composer
+          composer install --no-dev --optimize-autoloader --no-progress
 
-          # 4. (Опционально) Для Laravel: обновляем кэш конфига, видов и т.д.
+          # 5. (Опционально) Для Laravel: обновляем кэш конфига, видов и т.д.
           php artisan optimize:clear
           # php artisan migrate --force
 
-          # 5. (Опционально) Для Node.js: устанавливаем зависимости и билдим
+          # 6. (Опционально) Для Node.js: устанавливаем зависимости и билдим
           npm ci --only=production
           npm run build
 
-          # 6. (Для Nginx) Перезагружаем сервер, если нужно
+          # 7. (Для Nginx) Перезагружаем сервер, если нужно
           # sudo systemctl reload nginx
 
-          № 7. Ответ от сервера
+          № 8. Ответ от сервера
           echo "Deployment full completed successfully"
 
           EOF
