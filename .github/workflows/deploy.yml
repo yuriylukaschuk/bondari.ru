@@ -1,0 +1,49 @@
+name: Deploy to Production Server # Название workflow
+
+on: # Запускать workflow при пуше в ветку main
+  push:
+    branches: [ "main" ]
+
+jobs: # Задачи, которые выполнятся
+  deploy: # Название задачи (одна задача - один job)
+    runs-on: ubuntu-latest # На какой ОС запускать
+
+    steps: # Шаги, которые выполнит job
+    # Шаг 1: Получить код из репозитория
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # Шаг 2: Установить SSH-ключ для подключения к серверу
+    - name: Setup SSH
+      uses: webfactory/ssh-agent@v0.8.0
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    # Шаг 3: Выполнить команды на сервере через SSH
+    - name: Deploy to server
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} << 'EOF'
+          # Команды, которые выполнятся на вашем сервере:
+
+          # 1. Переходим в папку проекта
+          cd /path/to/your/project/on/server
+
+          # 2. Получаем последние изменения из GitHub
+          git fetch --all
+          git reset --hard origin/main
+
+          # 3. (Опционально) Устанавливаем зависимости, если используете Composer
+          composer install --no-dev --optimize-autoloader
+
+          # 4. (Опционально) Для Laravel: обновляем кэш конфига, видов и т.д.
+          php artisan optimize:clear
+          # php artisan migrate --force
+
+          # 5. (Опционально) Для Node.js: устанавливаем зависимости и билдим
+          npm ci --only=production
+          npm run build
+
+          # 6. (Для Nginx) Перезагружаем сервер, если нужно
+          # sudo systemctl reload nginx
+
+          EOF
