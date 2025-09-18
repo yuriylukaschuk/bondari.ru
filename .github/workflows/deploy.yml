@@ -21,8 +21,13 @@ jobs: # Задачи, которые выполнятся
 
     # Шаг 3: Выполнить команды на сервере через SSH
     - name: Deploy to server
-      run: |
-        ssh -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} << 'EOF'
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: ${{ secrets.SSH_PORT }}
+        script: |
           # Команды, которые выполнятся на вашем сервере:
 
           # 1. Переходим в папку проекта
@@ -40,8 +45,8 @@ jobs: # Задачи, которые выполнятся
           # php artisan migrate --force
 
           # 5. (Опционально) Для Node.js: устанавливаем зависимости и билдим
-          # npm ci --only=production
-          # npm run build
+          npm ci --only=production
+          npm run build
 
           # 6. (Для Nginx) Перезагружаем сервер, если нужно
           # sudo systemctl reload nginx
