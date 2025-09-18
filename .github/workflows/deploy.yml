@@ -37,6 +37,13 @@ jobs: # Задачи, которые выполнятся
           sudo apt-get clean
           composer clear-cache
 
+          # 2. Проверяем наличие Git репозитория
+          if [ ! -d ".git" ]; then
+            echo "Git repository not found, initializing..."
+            git init
+            git remote add origin https://github.com/your-username/your-repo.git
+          fi
+
           # 3. Получаем последние изменения из GitHub
           git fetch --all
           git reset --hard origin/main
