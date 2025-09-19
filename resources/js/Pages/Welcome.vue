@@ -62,7 +62,7 @@ const feedbackSubmit = () => {
                     <div class="container mx-auto px-4">
                         <div class="text-center">
                             <h1 class="text-4xl md:text-6xl font-bold text-amber-500 mb-6">
-                                Деревянные бочки для вина и коньяка
+                                Бочки для вина и коньяка
                             </h1>
                             <p class="text-xl text-amber-300 mb-8 max-w-3xl mx-auto">
                                 Качественные дубовые бочки ручной работы для идеального созревания напитков
