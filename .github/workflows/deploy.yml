@@ -62,6 +62,7 @@ jobs: # Задачи, которые выполнятся
           # php artisan migrate --force
 
           # 6. (Опционально) Для Node.js: устанавливаем зависимости и билдим
+          npm install
           npm ci --only=production
           npm run build
 
