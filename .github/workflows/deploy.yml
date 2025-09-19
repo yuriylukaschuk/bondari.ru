@@ -62,7 +62,7 @@ jobs: # Задачи, которые выполнятся
           npm run build
 
           # 8. (Для Nginx) Перезагружаем сервер, если нужно
-          sudo systemctl reload nginx
+          sudo systemctl restart nginx
 
           № 9. Ответ от сервера
           echo "Deployment full completed successfully"
