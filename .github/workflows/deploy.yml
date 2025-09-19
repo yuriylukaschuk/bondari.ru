@@ -69,4 +69,3 @@ jobs: # Задачи, которые выполнятся
           № 8. Ответ от сервера
           echo "Deployment full completed successfully"
 
-          EOF
