@@ -37,37 +37,37 @@ jobs: # Задачи, которые выполнятся
           sudo apt-get clean
           composer clear-cache
 
-          # 2. Проверяем наличие Git репозитория
+          # 3. Проверяем наличие Git репозитория
           if [ ! -d ".git" ]; then
             echo "Git repository not found, initializing..."
             git init
             git remote add origin https://github.com/yuriylukaschuk/bondari.ru
           fi
 
-          # 3. Получаем последние изменения из GitHub
+          # 4. Получаем последние изменения из GitHub
           git fetch --all
           git reset --hard origin/main
           git checkout main --force
           git submodule update --init --recursive
 
-          # 4. (Опционально) Устанавливаем зависимости, если используете Composer
+          # 5. (Опционально) Устанавливаем зависимости, если используете Composer
           composer install --no-dev --optimize-autoloader --no-progress
 
-          # 5. (Опционально) Для Laravel: обновляем кэш конфига, видов и т.д.
+          # 6. (Опционально) Для Laravel: обновляем кэш конфига, видов и т.д.
           php artisan optimize:clear
-          php artisan view:clear
-          php artisan cache:clear
-          php artisan route:clear
-          php artisan config:clear
-          php artisan migrate --force
+          # php artisan view:clear
+          # php artisan cache:clear
+          # php artisan route:clear
+          # php artisan config:clear
+          # php artisan migrate --force
 
-          # 6. (Опционально) Для Node.js: устанавливаем зависимости и билдим
+          # 7. (Опционально) Для Node.js: устанавливаем зависимости и билдим
           npm ci --only=production
           npm run build
 
-          # 7. (Для Nginx) Перезагружаем сервер, если нужно
-          # sudo systemctl reload nginx
+          # 8. (Для Nginx) Перезагружаем сервер, если нужно
+          sudo systemctl reload nginx
 
-          № 8. Ответ от сервера
+          № 9. Ответ от сервера
           echo "Deployment full completed successfully"
 
