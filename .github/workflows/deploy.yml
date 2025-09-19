@@ -47,7 +47,6 @@ jobs: # Задачи, которые выполнятся
           # 3. Получаем последние изменения из GitHub
           git fetch --all
           git reset --hard origin/main
-          git clean -fd
           git checkout main --force
           git submodule update --init --recursive
 
