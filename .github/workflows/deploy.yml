@@ -55,14 +55,13 @@ jobs: # Задачи, которые выполнятся
 
           # 5. (Опционально) Для Laravel: обновляем кэш конфига, видов и т.д.
           php artisan optimize:clear
-          php artisan view:clear
-          php artisan cache:clear
-          php artisan route:clear
-          php artisan config:clear
+          # php artisan view:clear
+          # php artisan cache:clear
+          # php artisan route:clear
+          # php artisan config:clear
           # php artisan migrate --force
 
           # 6. (Опционально) Для Node.js: устанавливаем зависимости и билдим
-          npm install
           npm ci --only=production
           npm run build
 
