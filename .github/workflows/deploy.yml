@@ -41,7 +41,7 @@ jobs: # Задачи, которые выполнятся
           if [ ! -d ".git" ]; then
             echo "Git repository not found, initializing..."
             git init
-            git remote add origin https://github.com/your-username/your-repo.git
+            git remote add origin https://github.com/yuriylukaschuk/bondari.ru
           fi
 
           # 3. Получаем последние изменения из GitHub
