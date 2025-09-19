@@ -27,7 +27,7 @@ jobs: # Задачи, которые выполнятся
         port: ${{ secrets.SSH_PORT }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        script: |
+        run: |
           # Команды, которые выполнятся на вашем сервере:
 
           # 1. Переходим в папку проекта
