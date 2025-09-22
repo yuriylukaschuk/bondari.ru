@@ -58,7 +58,7 @@ jobs: # Задачи, которые выполнятся
           # php artisan migrate --force
 
           # 7. (Опционально) Для Node.js: устанавливаем зависимости и билдим
-          npm ci --only=production
+          # npm ci --only=production
           npm run build
 
           # 8. (Для Nginx) Перезагружаем сервер, если нужно
