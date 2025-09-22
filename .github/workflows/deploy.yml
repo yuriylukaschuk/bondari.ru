@@ -44,12 +44,20 @@ jobs: # Задачи, которые выполнятся
             git remote add origin https://github.com/yuriylukaschuk/bondari.ru
           fi
 
+          # Сохраняем текущий симлинк если существует
+          if [ -L "public/storage" ]; then
+            rm public/storage
+          fi
+
           # 4. Получаем последние изменения из GitHub
           git fetch --all
           git reset --hard origin/main
           git checkout main --force
           git submodule update --init --recursive
 
+          # Восстанавливаем символическую ссылку
+          php artisan storage:link
+          
           # 5. (Опционально) Устанавливаем зависимости, если используете Composer
           composer install --no-dev --optimize-autoloader --no-progress
 
