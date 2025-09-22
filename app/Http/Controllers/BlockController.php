@@ -97,7 +97,6 @@ class BlockController extends Controller
      */
     public function index(Request $request)
     {
-
         $razdel_id = $request->filled('razdel_id') ? $request->razdel_id : 1;
         return $this->show($razdel_id);
     }
