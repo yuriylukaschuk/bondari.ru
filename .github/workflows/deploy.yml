@@ -48,6 +48,9 @@ jobs: # Задачи, которые выполнятся
           if [ -L "public/storage" ]; then
             rm public/storage
           fi
+          if [ -L "public/public" ]; then
+            rm public/public
+          fi
 
           # 4. Получаем последние изменения из GitHub
           git fetch --all
@@ -57,7 +60,7 @@ jobs: # Задачи, которые выполнятся
 
           # Восстанавливаем символическую ссылку
           php artisan storage:link
-          
+
           # 5. (Опционально) Устанавливаем зависимости, если используете Composer
           composer install --no-dev --optimize-autoloader --no-progress
 
