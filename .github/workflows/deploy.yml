@@ -62,7 +62,6 @@ jobs: # Задачи, которые выполнятся
           echo "Cleaning caches..."
           rm -rf node_modules/.vite
           rm -rf node_modules/.cache
-          rm -rf public/build/*          
 
           # Восстанавливаем .env
           [ -f .env.backup ] && mv .env.backup .env
