@@ -44,35 +44,35 @@ jobs: # Задачи, которые выполнятся
             git remote add origin https://github.com/yuriylukaschuk/bondari.ru
           fi
 
-          # Сохраняем текущий симлинк если существует
+          # 4. Сохраняем текущий симлинк если существует
           if [ -L "public/storage" ]; then
             rm public/storage
           fi
 
-          # 4. Получаем последние изменения из GitHub
+          # 5. Получаем последние изменения из GitHub
           git fetch --all
           git reset --hard origin/main
           git checkout main --force
           git submodule update --init --recursive
 
-          # Восстанавливаем символическую ссылку
-          rm public/public
+          # 6. Восстанавливаем символическую ссылку
+          # rm public/public
           php artisan storage:link
 
-          # 5. (Опционально) Устанавливаем зависимости, если используете Composer
+          # 7. (Опционально) Устанавливаем зависимости, если используете Composer
           composer install --no-dev --optimize-autoloader --no-progress
 
-          # 6. (Опционально) Для Laravel: обновляем кэш конфига, видов и т.д.
+          # 8. (Опционально) Для Laravel: обновляем кэш конфига, видов и т.д.
           php artisan optimize:clear
           # php artisan migrate --force
 
-          # 7. (Опционально) Для Node.js: устанавливаем зависимости и билдим
+          # 9. (Опционально) Для Node.js: устанавливаем зависимости и билдим
           # npm ci --only=production
           npm run build
 
-          # 8. (Для Nginx) Перезагружаем сервер, если нужно
+          # 10. (Для Nginx) Перезагружаем сервер, если нужно
           sudo systemctl restart nginx
 
-          № 9. Ответ от сервера
+          № 11. Ответ от сервера
           echo "Deployment full completed successfully"
 
