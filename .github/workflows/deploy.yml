@@ -33,6 +33,9 @@ jobs: # Задачи, которые выполнятся
           # 1. Переходим в папку проекта
           cd /var/www/bondari.ru
 
+          # Сохраняем .env
+          [ -f .env ] && cp .env .env.backup
+
           # 2. Очищаем место если нужно
           sudo apt-get clean
           composer clear-cache
@@ -52,8 +55,17 @@ jobs: # Задачи, которые выполнятся
           # 5. Получаем последние изменения из GitHub
           git fetch --all
           git reset --hard origin/main
-          git checkout main --force
-          git submodule update --init --recursive
+          # git checkout main --force
+          # git submodule update --init --recursive
+
+          # ОЧИСТКА ВСЕХ КЕШЕЙ
+          echo "Cleaning caches..."
+          rm -rf node_modules/.vite
+          rm -rf node_modules/.cache
+          rm -rf public/build/*          
+
+          # Восстанавливаем .env
+          [ -f .env.backup ] && mv .env.backup .env
 
           # 6. Восстанавливаем символическую ссылку
           # rm public/public
@@ -67,8 +79,14 @@ jobs: # Задачи, которые выполнятся
           # php artisan migrate --force
 
           # 9. (Опционально) Для Node.js: устанавливаем зависимости и билдим
-          # npm ci --only=production
+          npm ci --only=production
           npm run build
+
+          # Очистка кеша Laravel
+          php artisan optimize:clear
+          php artisan view:clear
+          php artisan config:clear
+          php artisan cache:clear
 
           # 10. (Для Nginx) Перезагружаем сервер, если нужно
           sudo systemctl restart nginx
