@@ -55,8 +55,8 @@ jobs: # Задачи, которые выполнятся
           # 5. Получаем последние изменения из GitHub
           git fetch --all
           git reset --hard origin/main
-          # git checkout main --force
-          # git submodule update --init --recursive
+          git checkout main --force
+          git submodule update --init --recursive
 
           # ОЧИСТКА ВСЕХ КЕШЕЙ
           echo "Cleaning caches..."
