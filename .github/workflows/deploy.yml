@@ -49,11 +49,6 @@ jobs: # Задачи, которые выполнятся
             rm public/storage
           fi
 
-          if [ -L "public/public" ]; then
-            echo "Symlink public/public exist"
-            rm /var/www/bondari.ru/public/public
-          fi
-
           # 4. Получаем последние изменения из GitHub
           git fetch --all
           git reset --hard origin/main
@@ -61,6 +56,7 @@ jobs: # Задачи, которые выполнятся
           git submodule update --init --recursive
 
           # Восстанавливаем символическую ссылку
+          rm public/public
           php artisan storage:link
 
           # 5. (Опционально) Устанавливаем зависимости, если используете Composer
