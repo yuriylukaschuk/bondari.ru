@@ -48,8 +48,10 @@ jobs: # Задачи, которые выполнятся
           if [ -L "public/storage" ]; then
             rm public/storage
           fi
+
           if [ -L "public/public" ]; then
-            rm public/public
+            echo "Symlink public/public exist"
+            rm /var/www/bondari.ru/public/public
           fi
 
           # 4. Получаем последние изменения из GitHub
