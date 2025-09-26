@@ -81,7 +81,7 @@ jobs: # Задачи, которые выполнятся
           # 9. (Опционально) Для Node.js: устанавливаем зависимости и билдим
           rm -rf node_modules package-lock.json
           # npm install
-          npm ci --only=production
+          npm ci --only=production --omit=dev
           npm run build
 
           # Очистка кеша Laravel
