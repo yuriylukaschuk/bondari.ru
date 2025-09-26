@@ -32,12 +32,13 @@ jobs: # Задачи, которые выполнятся
 
           # 1. Переходим в папку проекта
           cd /var/www/bondari.ru
+          sudo su
 
           # Сохраняем .env
           [ -f .env ] && cp .env .env.backup
 
           # 2. Очищаем место если нужно
-          sudo apt-get clean
+          apt-get clean
           composer clear-cache
 
           # 3. Проверяем наличие Git репозитория
@@ -60,7 +61,7 @@ jobs: # Задачи, которые выполнятся
 
           # ОЧИСТКА ВСЕХ КЕШЕЙ
           echo "Cleaning caches..."
-          rm -rf node_modules/.vite
+          # rm -rf node_modules/.vite
           rm -rf node_modules/.cache
 
           # Восстанавливаем .env
@@ -78,7 +79,6 @@ jobs: # Задачи, которые выполнятся
           # php artisan migrate --force
 
           # 9. (Опционально) Для Node.js: устанавливаем зависимости и билдим
-          sudo su
           rm -rf node_modules package-lock.json
           # npm install
           npm ci --only=production
